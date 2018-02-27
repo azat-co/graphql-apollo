@@ -18,11 +18,11 @@ const client = new ApolloClient({
 })
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <ApolloProvider client={client}>
         <Router>
-          <div className="app">
+          <div className='app'>
             <Route exact path='/' component={ProductListPage} />
             <Route path='/create-product' component={ProductCreatePage} />
             <Route path='/products/:id' component={ProductDetailPage} />
