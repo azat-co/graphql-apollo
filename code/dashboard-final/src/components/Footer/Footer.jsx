@@ -9,18 +9,18 @@ class Footer extends Component {
                     <nav className="pull-left">
                         <ul>
                             <li>
-                                <a href="#pablo">
-                                    Home
+                                <a href="http://azat.co">
+                                &copy; {(new Date()).getFullYear()} Azat Mardan
                                 </a>
                             </li>
                             <li>
-                                <a href="#pablo">
-                                    Company
+                                <a href="https://github.com/azat-co/graphql-apollo">
+                                    GitHub
                                 </a>
                             </li>
                             <li>
-                                <a href="#pablo">
-                                    Portfolio
+                                <a href="https://manning.com/books/react-quickly">
+                                    React Quickly
                                 </a>
                             </li>
                             <li>
@@ -30,9 +30,6 @@ class Footer extends Component {
                             </li>
                         </ul>
                     </nav>
-                    <p className="copyright pull-right">
-                        &copy; {(new Date()).getFullYear()} <a href="http://azat.co">Azat Mardan</a>
-                    </p>
                 </Grid>
             </footer>
 		);

@@ -13,8 +13,11 @@ class Help extends Component {
                     <Row>
                         <Col md={8} mdOffset={2}>
                             <div>
-                                Need help form the author? 
+                                Need help form the author, Azat Mardan?<br/> 
                                 Ask for help at <a href="https://clarity.fm/azat" target="_blank">https://clarity.fm/azat</a>.
+                                <br/>
+                                <br/>
+                                Built with <a href="https://www.creative-tim.com/">Creative Tim.</a>
                             </div>                            
                         </Col>
                     </Row>

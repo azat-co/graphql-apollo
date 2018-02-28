@@ -8,11 +8,14 @@ import { Grid, Row, Col, Table } from 'react-bootstrap';
 import Card from 'components/Card/Card.jsx';
 import { thArray } from 'variables/Variables.jsx';
 
+const LIMIT = 3
+
 class ProductList extends Component {
   componentDidMount() {
 
   }
   render() {
+ 
     return (
       <div className="content">
         <Grid fluid>
@@ -22,7 +25,7 @@ class ProductList extends Component {
                 title="Product Catalog"
                 category="List of Products"
                 ctTableFullWidth ctTableResponsive
-                content={
+                content={(this.props.allProductsQuery.loading)?'Loading...':
                   <Table striped hover>
                     <thead>
                       <tr>
@@ -42,6 +45,7 @@ class ProductList extends Component {
                             <tr key={key} onClick={this.viewProduct}>{
                               Object.keys(prop).map((key, index) => {
                                 if (key == "__typename") return false
+                                if (key == 'productImageUrl') return <td><img width="100" src={prop[key]}/></td>
                                 return (
                                   <td key={key}>{prop[key]}</td>
                                 );
@@ -56,7 +60,6 @@ class ProductList extends Component {
                 }
               />
             </Col>
-
           </Row>
         </Grid>
       </div>
