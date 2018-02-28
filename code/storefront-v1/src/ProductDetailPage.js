@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom'
 import gql from 'graphql-tag'
 
 
-class DetailPage extends React.Component {
+class ProductDetailPage extends React.Component {
 
     render() {
         if (this.props.productQuery.loading) {
@@ -18,7 +18,7 @@ class DetailPage extends React.Component {
         }
 
         const {Product} = this.props.productQuery
-
+        console.log(this.props)
         return (
             <div>
                 <h2>{Product.name}</h2>
@@ -37,6 +37,9 @@ class DetailPage extends React.Component {
                     <div className=''>
                         {Product.description}
                     </div>
+                    In store: <div className=''>
+                        {Product.inStoreCount}
+                    </div>                    
                 </div>
                 <button
                     className=''
@@ -48,11 +51,19 @@ class DetailPage extends React.Component {
     }
 
     handleDelete = async() => {
+        console.log(this.props)
         await this
             .props
             .deleteProductMutation({
                 variables: {
                     id: this.props.productQuery.Product.id
+                },
+                update: (proxy, {data: deleteProduct}) => {
+                    const data = proxy.readQuery({ query: ALL_PRODUCTS_QUERY })
+                    console.log(data, proxy, deleteProduct)
+                    var removeIndex = data.allProducts.map((item) => item.id ).indexOf(deleteProduct.id)
+                    ~removeIndex && data.allProducts.splice(removeIndex, 1)
+                    proxy.writeQuery({ query: ALL_PRODUCTS_QUERY, data })                   
                 }
             })
         this
@@ -61,7 +72,16 @@ class DetailPage extends React.Component {
             .replace('/')
     }
 }
-
+const ALL_PRODUCTS_QUERY = gql`
+  query AllProductsQuery {
+    allProducts(orderBy: name_DESC) {
+      id
+      name
+      description
+      productImageUrl      
+    }
+  }
+`
 const DELETE_PRODUCT_MUTATION = gql `
   mutation DeleteProductMutation($id: ID!) {
     deleteProduct(id: $id) {
@@ -82,7 +102,7 @@ const PRODUCT_QUERY = gql `
   }
 `
 
-const DetailPageWithGraphQL = compose(graphql(PRODUCT_QUERY, {
+const ProductDetailPageWithGraphQL = compose(graphql(PRODUCT_QUERY, {
     name: 'productQuery',
     // see documentation on computing query variables from props in wrapper
     // http://dev.apollodata.com/react/queries.html#options-from-props
@@ -91,8 +111,8 @@ const DetailPageWithGraphQL = compose(graphql(PRODUCT_QUERY, {
             id: match.params.id
         }
     })
-}), graphql(DELETE_PRODUCT_MUTATION, {name: 'deleteProducttMutation'}))(DetailPage)
+}), graphql(DELETE_PRODUCT_MUTATION, { name: 'deleteProductMutation' }))(ProductDetailPage)
 
-const DetailPageWithDelete = graphql(DELETE_PRODUCT_MUTATION)(DetailPageWithGraphQL)
+const ProductDetailPageWithDelete = graphql(DELETE_PRODUCT_MUTATION)(ProductDetailPageWithGraphQL)
 
-export default withRouter(DetailPageWithDelete)
+export default withRouter(ProductDetailPageWithDelete)
