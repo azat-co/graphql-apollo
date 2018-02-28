@@ -250,7 +250,7 @@ var style = {
 // // // For tables
 // //
 //
-const thArray = ["ID","Name","Description","Image", "Actions"];
+const thArray = ["ID","Name","Description","Image"];
 
 
 //
