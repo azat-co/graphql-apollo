@@ -15,6 +15,8 @@ import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import Sidebar from 'components/Sidebar/Sidebar';
 
+import ProductDetail from 'views/ProductList/ProductDetail';
+
 import { style } from "variables/Variables.jsx";
 
 import appRoutes from 'routes/app.jsx';
@@ -52,6 +54,7 @@ class App extends Component {
           <div id="main-panel" className="main-panel">
             <Header {...this.props} />
             <Switch>
+              <Route path="/products/:id" component={ProductDetail} />
               {
                 appRoutes.map((prop, key) => {
                   if (prop.name === "Notifications")
@@ -74,7 +77,8 @@ class App extends Component {
                     <Route path={prop.path} component={prop.component} key={key} />
                   );
                 })
-              }
+                
+            }
             </Switch>
             <Footer />
           </div>

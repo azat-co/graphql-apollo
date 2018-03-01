@@ -245,12 +245,7 @@ var style = {
     }
 }
 
-//
-// //
-// // // For tables
-// //
-//
-const thArray = ["ID","Name","Description","Image"];
+
 
 
 //
@@ -549,7 +544,6 @@ var legendBar = {
 
 module.exports = {
     style, // For notifications (App container and Notifications view)
-    thArray, // For tables (ProductList view)
     iconsArray, // For icons (Icons view)
     dataPie, legendPie, dataSales, optionsSales, responsiveSales, legendSales, dataBar, optionsBar, responsiveBar, legendBar // For charts (Dashboard view)
 };
