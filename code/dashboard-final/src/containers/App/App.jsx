@@ -16,8 +16,8 @@ import Footer from 'components/Footer/Footer';
 import Sidebar from 'components/Sidebar/Sidebar';
 
 import ProductDetail from 'views/ProductList/ProductDetail';
-
 import { style } from "variables/Variables.jsx";
+import { Grid, Row, Col, Table } from 'react-bootstrap';
 
 import appRoutes from 'routes/app.jsx';
 const __SIMPLE_API_ENDPOINT__ = 'https://api.graph.cool/simple/v1/cje64cfdy0knn0161uokrbo7p'
@@ -53,33 +53,41 @@ class App extends Component {
           <Sidebar {...this.props} />
           <div id="main-panel" className="main-panel">
             <Header {...this.props} />
-            <Switch>
-              <Route path="/products/:id" component={ProductDetail} />
-              {
-                appRoutes.map((prop, key) => {
-                  if (prop.name === "Notifications")
-                    return (
-                      <Route
-                        path={prop.path}
-                        key={key}
-                        render={routeProps =>
-                          <prop.component
-                            {...routeProps}
-                            handleClick={this.handleNotificationClick}
-                          />}
-                      />
-                    );
-                  if (prop.redirect)
-                    return (
-                      <Redirect from={prop.path} to={prop.to} key={key} />
-                    );
-                  return (
-                    <Route path={prop.path} component={prop.component} key={key} />
-                  );
-                })
-                
-            }
-            </Switch>
+            <div className="content">
+              <Grid fluid>
+                <Row>
+                  <Col md={12}>
+                    <Switch>
+                      <Route path="/products/:id" component={ProductDetail} />
+                      {
+                        appRoutes.map((prop, key) => {
+                          if (prop.name === "Notifications")
+                            return (
+                              <Route
+                                path={prop.path}
+                                key={key}
+                                render={routeProps =>
+                                  <prop.component
+                                    {...routeProps}
+                                    handleClick={this.handleNotificationClick}
+                                  />}
+                              />
+                            );
+                          if (prop.redirect)
+                            return (
+                              <Redirect from={prop.path} to={prop.to} key={key} />
+                            );
+                          return (
+                            <Route path={prop.path} component={prop.component} key={key} />
+                          );
+                        })
+
+                      }
+                    </Switch>
+                  </Col>
+                </Row>
+              </Grid>
+            </div>
             <Footer />
           </div>
         </div>
