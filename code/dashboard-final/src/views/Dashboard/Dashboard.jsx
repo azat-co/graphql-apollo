@@ -50,28 +50,22 @@ class Dashboard extends Component {
     console.log(this.props)
     // Data for Pie Chart
     let sum = 0
-    const dataPie = {
-      labels: this.props.DashboardQuery.allProducts.map(p => {
-
-        let c = p.productQuantityPerOrders.reduce( // ['40%', '20%', '40%'], 
-        (previousValue, currentValue)=>{
-          console.log(previousValue + currentValue.quantity)
+    const productsPie = this.props.DashboardQuery.allProducts.map(p => p.productQuantityPerOrders.reduce( // ['40%', '20%', '40%'], 
+        (previousValue, currentValue)=>{       
           sum += currentValue.quantity
-
           return (previousValue+currentValue.quantity)
         }, 0
-      )
-      console.log(c)
-      return c
-    }
-    )
+      )).map((p, i)=>({ name: this.props.DashboardQuery.allProducts[i].name, quantity: p}))
+        .filter(p => p.quantity > 0)
+    const dataPie = {
+      labels: productsPie.map(p=>p.quantity),
+      series: productsPie.map(p => p.quantity/sum)
     }
 
-    dataPie.series = dataPie.labels.map(p=>Math.round(p/sum))
     console.log(dataPie)
     var legendPie = {
-      names: this.props.DashboardQuery.allProducts.map(p=>p.name),
-      types: ["info", "danger", "warning", 'info']
+      names: productsPie.map(p=>p.name),
+      types: ["info", "danger"]
     };
     return (
       <div className="content">
@@ -142,8 +136,8 @@ class Dashboard extends Component {
             <Col md={4}>
               <Card
                 statsIcon="fa fa-clock-o"
-                title="Email Statistics"
-                category="Last Campaign Performance"
+                title="Product Sales Statistics"
+                category="YTD Performance"
                 stats="Campaign sent 2 days ago"
                 content={
                   <div id="chartPreferences" className="ct-chart ct-perfect-fourth">
