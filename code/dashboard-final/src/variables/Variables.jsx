@@ -463,15 +463,8 @@ const iconsArray = [
 // // // // For dashboard's charts
 // //
 //
-// Data for Pie Chart
-var dataPie = {
-    labels: ['40%','20%','40%'],
-    series: [40, 20, 40]
-};
-var legendPie = {
-    names: ["Open","Bounce","Unsubscribe"],
-    types: ["info","danger","warning"]
-};
+
+
 
 // Data for Line Chart
 var dataSales = {
@@ -545,5 +538,5 @@ var legendBar = {
 module.exports = {
     style, // For notifications (App container and Notifications view)
     iconsArray, // For icons (Icons view)
-    dataPie, legendPie, dataSales, optionsSales, responsiveSales, legendSales, dataBar, optionsBar, responsiveBar, legendBar // For charts (Dashboard view)
+    dataSales, optionsSales, responsiveSales, legendSales, dataBar, optionsBar, responsiveBar, legendBar // For charts (Dashboard view)
 };
