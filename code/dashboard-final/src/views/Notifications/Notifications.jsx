@@ -61,4 +61,42 @@ class Notifications extends Component {
     }
 }
 
+
+// Notifications.fragments = {
+//     allNotifications: gql`
+//   fragment AllNotificationsNotificationsQuery on NotificationsQuery {
+//     id
+//     message
+//     type
+//     createdAt
+//   }
+//   `
+// }
+
+// // year-mm-day
+// const DASHBOARD_QUERY = gql`
+// query NotificationsQuery {
+//     allNotifications {
+//       ...AllNotificationsNotificationsQuery
+//     }    
+//     ${Notifications.fragments.allNotifications}
+//   }
+// `
+
+
+
+// const NotificationsWithQuery = graphql(DASHBOARD_QUERY, {
+//     name: 'NotificationsQuery',
+//     options(props) {
+//         return {
+//             variables: {
+//             },
+//             fetchPolicy: 'network-only'
+//         }
+//     }
+// })(Notifications)
+
+// export default NotificationsWithQuery;
+
+
 export default Notifications;
