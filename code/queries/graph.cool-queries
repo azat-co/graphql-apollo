@@ -1,0 +1,21 @@
+ curl 'https://api.graph.cool/simple/v1/cjebse9ms2gtw0179vvs4e8mz'  \
+  -H 'Authorization: Bearer YOUR_AUTH_TOKEN'  \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"query{allProducts{name createdAt description inStoreCount additionalDescription price}}"}'
+
+
+
+  query {
+  allOrders {
+    id
+    _productQuantityPerOrdersMeta {count}    
+		productQuantityPerOrders {          
+      id       
+      quantity
+      product {
+        name
+        _productQuantityPerOrdersMeta {count}
+      }
+    }
+  }
+}
