@@ -84,7 +84,7 @@ const UNFULLFILL_ORDER_MUTATION = gql`
 
 const ALL_ORDERS_QUERY = gql`
 query {
-  allOrders(orderBy: orderCreateAt_DESC) {
+  allOrders(orderBy: orderCreatedAt_DESC) {
     id
     customerEmail
     customerPayment

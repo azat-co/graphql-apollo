@@ -6,12 +6,12 @@ import gql from 'graphql-tag'
 
 export class Notifications extends Component {
     handleCheckbox = event => {
-        const target = event.target;
-        console.log(event.target);
+        const target = event.target
+        console.log(event.target)
         this.setState({
             [target.name]: target.checked
-        });
-    };
+        })
+    }
     render() {
         const edit = (<Tooltip id="edit_tooltip">Edit Task</Tooltip>);
         const remove = (<Tooltip id="remove_tooltip">Remove</Tooltip>);
@@ -36,8 +36,7 @@ export class Notifications extends Component {
                             bsStyle="danger"
                             simple
                             type="button"
-                            bsSize="xs"
-                        >
+                            bsSize="xs">
                             <i className="fa fa-times"></i>
                         </Button>
                     </OverlayTrigger>
@@ -52,12 +51,10 @@ export class Notifications extends Component {
 Notifications.fragment = gql`
   fragment allNotifications on Query {
     allNotifications {
-
-    id
-    message
-    type
-    createdAt
+        id
+        message
+        type
+        createdAt
     }
-  }
-  `
+  }`
 export default Notifications;

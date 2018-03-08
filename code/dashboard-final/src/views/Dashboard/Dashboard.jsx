@@ -7,7 +7,9 @@ import gql from 'graphql-tag'
 
 import { Card } from 'components/Card/Card.jsx';
 import { StatsCard } from 'components/StatsCard/StatsCard.jsx';
-import { Notifications } from 'views/Notifications/NotificationsSummary.jsx';
+import NotificationsSummary from 'views/Notifications/NotificationsSummary.jsx';
+import Notifications from 'views/Notifications/Notifications.jsx';
+
 import {
   legendPie,
   dataSales,
@@ -202,8 +204,10 @@ class Dashboard extends Component {
   }
 }
 
+console.log(NotificationsSummary.fragment)
+
 Dashboard.fragments = {
-  allNotifications: Notifications.fragment
+  allNotifications: NotificationsSummary.fragment
 }
 
 // year-mm-day
@@ -236,16 +240,13 @@ query DashboardQuery {
       _productQuantityPerOrdersMeta {
         count
       }
-    }
-    
+    }  
     ...allNotifications
     
     
   }
   ${Dashboard.fragments.allNotifications}
 `
-
-
 
 const DashboardWithQuery = graphql(DASHBOARD_QUERY, {
   name: 'DashboardQuery',
