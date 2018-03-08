@@ -1,0 +1,22 @@
+{
+  "name": "dashaboard-api",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Azat Mardan (http://azat.co/)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "express": "4.16.2",
+    "express-graphql": "0.6.12",
+    "graphql": "0.13.1",
+    "graphql-compose": "3.0.6",
+    "graphql-compose-mongoose": "3.1.1",
+    "mongoose": "5.0.9",
+    "morgan": "1.9.0"
+  }
+}
