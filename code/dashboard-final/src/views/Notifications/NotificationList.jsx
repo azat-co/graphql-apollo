@@ -4,7 +4,7 @@ import Checkbox from 'elements/CustomCheckbox/CustomCheckbox.jsx';
 import Button from 'elements/CustomButton/CustomButton.jsx';
 import gql from 'graphql-tag'
 
-export class Notifications extends Component {
+export class NotificationList extends Component {
     handleCheckbox = event => {
         const target = event.target
         console.log(event.target)
@@ -16,7 +16,9 @@ export class Notifications extends Component {
         const edit = (<Tooltip id="edit_tooltip">Edit Task</Tooltip>);
         const remove = (<Tooltip id="remove_tooltip">Remove</Tooltip>);
         const notificationTitles = this.props.notifications
-        return this.props.notifications.map((notification, i) => (
+        return <div className="table-full-width">
+            <table className="table">
+                {this.props.notifications.map((notification, i) => (
             <tr key={i}>
                 <td class={notification.type} >{notification.message}</td>
                 <td className="td-actions text-right">
@@ -43,12 +45,14 @@ export class Notifications extends Component {
 
                 </td>
             </tr>
-        ))
+        ))}
+            </table>
+        </div>
        
     }
 }
 
-Notifications.fragment = gql`
+NotificationList.fragment = gql`
   fragment allNotifications on Query {
     allNotifications {
         id
@@ -56,5 +60,9 @@ Notifications.fragment = gql`
         type
         createdAt
     }
-  }`
-export default Notifications;
+
+  }
+`
+
+export default NotificationList;
+

@@ -7,8 +7,8 @@ import gql from 'graphql-tag'
 
 import { Card } from 'components/Card/Card.jsx';
 import { StatsCard } from 'components/StatsCard/StatsCard.jsx';
-import NotificationsSummary from 'views/Notifications/NotificationsSummary.jsx';
-import Notifications from 'views/Notifications/Notifications.jsx';
+import { NotificationList } from 'views/Notifications/NotificationList.jsx';
+
 
 import {
   legendPie,
@@ -21,8 +21,6 @@ import {
   responsiveBar,
   legendBar
 } from 'variables/Variables.jsx';
-
-
 
 class Dashboard extends Component {
   createLegend(json) {
@@ -187,12 +185,8 @@ class Dashboard extends Component {
                 category="Backend development"
                 stats="Updated 3 minutes ago"
                 statsIcon="fa fa-history"
-                content={
-                  <div className="table-full-width">
-                    <table className="table">
-                      <Notifications notifications={this.props.DashboardQuery.allNotifications}/>
-                    </table>
-                  </div>
+                content={                  
+                      <NotificationList notifications={this.props.DashboardQuery.allNotifications}/>                  
                 }
               />
             </Col>
@@ -207,7 +201,7 @@ class Dashboard extends Component {
 console.log(NotificationsSummary.fragment)
 
 Dashboard.fragments = {
-  allNotifications: NotificationsSummary.fragment
+  allNotifications: NotificationList.fragment
 }
 
 // year-mm-day
