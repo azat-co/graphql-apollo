@@ -1,0 +1,26 @@
+[
+    {
+        "amount": 8800,
+        "customerEmail": "hi@node.university",
+        "customerPayment": "0x20a788ff3daf7d3d288630ce7a5bf1eac3461091e151c6591c00b496e8912449",
+        "_id": "5aac4c23052f7f18c9ee472b",
+        "isCompleted": true,
+        "orderCreatedAt": {
+            "$date": "2013-11-20T23:32:18Z"
+        },
+        "products": [
+            {
+                "product": {
+                    "_id": "5aac4182f2ec1e7d6c5aab67"
+                },
+                "productQuantity": 2
+            },
+            {
+                "product": {
+                    "_id": "5aac4182f2ec1e7d6c5aab66"
+                },
+                "productQuantity": 1
+            }
+        ]
+    }
+]

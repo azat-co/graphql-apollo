@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "seed-products": "mongoimport -h localhost:27017 --db dashboard --collection products --type json --jsonArray --file ./seed-data/products.json --mode merge",
+    "seed-orders": "mongoimport -h localhost:27017 --db dashboard --collection orders --type json --jsonArray --file ./seed-data/orders.json --mode merge",
+    "seed-all": "npm run seed-products && npm run seed-orders"
   },
   "keywords": [],
   "author": "Azat Mardan (http://azat.co/)",

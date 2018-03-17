@@ -1,13 +1,30 @@
-import mongoose from 'mongoose'
-
-var orderSchema = new mongoose.Schema({
-  title: {
+const mongoose = require('mongoose')
+const { Schema } = require('mongoose')
+// const ProductSchema = require('./product.js')
+const OrderSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  amount: Number,
+  customerEmail: {
     type: String,
     required: true
   },
-  description: {
-    type: String
-  }
+  customerPayment: {
+    type: String,
+    required: true
+  },
+  isCompleted: {
+    type: String,
+    required: true
+  },
+  orderCreatedAt: Date,
+  products: [{    
+    product: {
+      id: { type: Schema.Types.ObjectId, ref: 'Product' },
+    },
+    productQuantity: Number
+  }]
+  
 })
 
-export default mongoose.model('Order', orderSchema)
+
+module.exports = OrderSchema
