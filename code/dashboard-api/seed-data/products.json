@@ -1,27 +1,35 @@
 [
     {
-        "_id": "5aac4055f2ec1e7d6c5aab64",
+        "_id": {
+            "$oid": "5aac4055f2ec1e7d6c5aab64"
+        },
         "description": "Learn Backbone.js, Node.js and MongoDB",
         "inStoreCount": 10,
         "name": "Full Stack JavaScript",
         "productImageUrl": "https://images-na.ssl-images-amazon.com/images/I/41SsECXr54L._SX328_BO1,204,203,200_.jpg"
     },
     {
-        "_id": "5aac4181f2ec1e7d6c5aab65",
+        "_id": {
+            "$oid": "5aac4181f2ec1e7d6c5aab65"
+        },
         "description": "Painless web apps with React, JSX, Redux, and GraphQL",
         "inStoreCount": 10,
         "name": "React Quickly",
         "productImageUrl": "https://images-na.ssl-images-amazon.com/images/I/5159foIB0EL._SX396_BO1,204,203,200_.jpg"
     },
     {
-        "_id": "5aac4182f2ec1e7d6c5aab66",
+        "_id": {
+            "$oid": "5aac4182f2ec1e7d6c5aab66"
+        },
         "description": "Building Real-World Scalable Web Apps",
         "inStoreCount": 10,
         "name": "Practical Node.js",
         "productImageUrl": "https://images-na.ssl-images-amazon.com/images/I/512022zZ3OL._SX403_BO1,204,203,200_.jpg"
     },
     {
-        "_id": "5aac4182f2ec1e7d6c5aab67",
+        "_id": {
+            "$oid": "5aac4182f2ec1e7d6c5aab67"
+        },
         "description": "Master Express.js: The Node.js Framework For Your Web Development",
         "inStoreCount": 10,
         "name": "Pro Express.js",
