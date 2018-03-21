@@ -8,7 +8,8 @@
     "start": "node index.js",
     "seed-products": "mongoimport -h localhost:27017 --db dashboard --collection products --type json --jsonArray --file ./seed-data/products.json --mode merge",
     "seed-orders": "mongoimport -h localhost:27017 --db dashboard --collection orders --type json --jsonArray --file ./seed-data/orders.json --mode merge",
-    "seed-all": "npm run seed-products && npm run seed-orders"
+    "seed-product-quantity-per-order": "mongoimport -h localhost:27017 --db dashboard --collection productQuantityPerOrder  --type json --jsonArray --file ./seed-data/product-quantity-per-order.json --mode merge",
+    "seed": "npm run seed-products && npm run seed-orders && npm run seed-product-quantity-per-order"
   },
   "keywords": [],
   "author": "Azat Mardan (http://azat.co/)",

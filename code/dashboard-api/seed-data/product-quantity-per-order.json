@@ -1,0 +1,22 @@
+[
+    {
+        "_id": {
+            "$oid": "5ab1a2ce72b289c5c5dd8991"
+        },
+        "order": {
+            "$oid":"5aac4c23052f7f18c9ee472b"},
+        "product": {
+            "$oid":"5aac4182f2ec1e7d6c5aab67"},
+        "quantity": "10"
+    },
+    {
+        "_id": {
+            "$oid": "5ab1a2ce72b289c5c5dd8991"
+        },
+        "order": {
+            "$oid":"5aac4c23052f7f18c9ee472b"},
+        "product": {
+            "$oid":"5aac4182f2ec1e7d6c5aab66"},
+        "quantity": 5
+    }
+]

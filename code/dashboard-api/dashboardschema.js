@@ -10,6 +10,7 @@ const {
 } = require ('graphql/type')
 const GraphQLDate = require('graphql-date')
 const graphql = require('graphql')
+graphql.graphqlf
 
 const mongoose = require('mongoose')
 

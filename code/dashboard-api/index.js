@@ -11,8 +11,8 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost:27017/dashboard')
 
-const DashboardGraphQLSchema = require('./dashboardschema.js')
-// const DashboardGraphQLSchema = require('./models/graphql-schema.js')
+// const DashboardGraphQLSchema = require('./dashboardschema.js')
+const DashboardGraphQLSchema = require('./models/graphql-schema.js')
 app.use(cors(corsOptions))
 app.use('/graphql', graphqlHTTP({
   schema: DashboardGraphQLSchema,

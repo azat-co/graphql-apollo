@@ -46,7 +46,7 @@ class OrderList extends Component {
                       <td>{prop.customerEmail}</td>
                       <td>{prop.customerPayment.substr(0, 9)}*****</td>
                       <td>{prop.amount}</td>
-                      <td>{prop._productQuantityPerOrdersMeta.count}</td>
+                      <td>{prop.allProductQuantityPerOrdersCount}</td>
                       <td>{prop.productQuantityPerOrders.map((productQuantityPerOrder, index) =>
                         <div key={index}>{productQuantityPerOrder.product.name} x {productQuantityPerOrder.quantity}</div>
                       )}</td>
@@ -90,13 +90,13 @@ query {
     customerPayment
     amount
     isCompleted
-    _productQuantityPerOrdersMeta {count}    
+    allProductQuantityPerOrdersCount
 		productQuantityPerOrders {          
       id       
       quantity
       product {
         name
-        _productQuantityPerOrdersMeta {count}
+        allProductQuantityPerOrdersCount
       }
     }
   }

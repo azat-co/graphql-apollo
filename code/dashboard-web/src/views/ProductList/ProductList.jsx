@@ -62,7 +62,7 @@ class ProductList extends Component {
                 (() => {
                   if (this.props.allProductsQuery.loading) return false
                   const query = qs.parse(this.props.location.search)
-                  let count = this.props.allProductsQuery._allProductsMeta.count
+                  let count = this.props.allProductsQuery.allProductsCount
                   const limit = parseInt(query.limit, 10) || LIMIT
                   const offset = parseInt(query.offset, 10) || 0
                   const pages = Math.ceil(count / limit)
@@ -97,9 +97,7 @@ const ALL_PRODUCTS_QUERY = gql`
       description
       productImageUrl      
     }
-    _allProductsMeta {
-      count
-    }
+    allProductsCount
   }
 `
 

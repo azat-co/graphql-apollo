@@ -75,7 +75,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-gift text-warning"></i>}
                 statsText="Orders"
-                statsValue={this.props.DashboardQuery._allOrdersMeta.count}
+                statsValue={this.props.DashboardQuery.allOrdersCount}
                 statsIcon={<i className="fa fa-refresh"></i>}
                 statsIconText="Since beginning of the year"
               />
@@ -102,7 +102,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="fa pe-7s-box2 text-info"></i>}
                 statsText="Products"
-                statsValue={this.props.DashboardQuery._allProductsMeta.count}
+                statsValue={this.props.DashboardQuery.allProductsCount}
                 statsIcon={<i className="fa fa-refresh"></i>}
                 statsIconText="Updated now"
               />
@@ -205,12 +205,8 @@ Dashboard.fragments = {
 // year-mm-day
 const DASHBOARD_QUERY = gql`
 query DashboardQuery {
-    _allProductsMeta {
-      count
-    }
-    _allOrdersMeta {
-      count
-    }
+    allProductsCount
+    allOrdersCount
   	allOrders( filter: {
       orderCreatedAt_gte: "2018-01-01" 
     }) {
@@ -229,9 +225,7 @@ query DashboardQuery {
         id
         quantity
       }
-      _productQuantityPerOrdersMeta {
-        count
-      }
+      allProductQuantityPerOrdersCount
     }  
     ...allNotifications
     
