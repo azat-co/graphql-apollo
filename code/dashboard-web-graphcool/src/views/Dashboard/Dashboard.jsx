@@ -181,8 +181,8 @@ class Dashboard extends Component {
 
             <Col md={6}>
               <Card
-                title="Tasks"
-                category="Backend development"
+                title="Notifications"
+                category="Events"
                 stats="Updated 3 minutes ago"
                 statsIcon="fa fa-history"
                 content={                  
@@ -194,12 +194,8 @@ class Dashboard extends Component {
 
         </Grid>
       </div>
-    );
+    )
   }
-}
-
-Dashboard.fragments = {
-  allNotifications: NotificationList.fragment
 }
 
 // year-mm-day
@@ -233,11 +229,9 @@ query DashboardQuery {
         count
       }
     }  
-    ...allNotifications
-    
-    
+    ...allNotificationsFragment        
   }
-  ${Dashboard.fragments.allNotifications}
+  ${NotificationList.fragment}
 `
 
 const DashboardWithQuery = graphql(DASHBOARD_QUERY, {

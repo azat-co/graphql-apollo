@@ -20,8 +20,8 @@ import { style } from "variables/Variables.jsx";
 import { Grid, Row, Col, Table } from 'react-bootstrap';
 
 import appRoutes from 'routes/app.jsx';
-// const __SIMPLE_API_ENDPOINT__ = 'https://api.graph.cool/simple/v1/cje64cfdy0knn0161uokrbo7p'
-const __SIMPLE_API_ENDPOINT__ = 'http://localhost:3001/graphql'
+const __SIMPLE_API_ENDPOINT__ = 'https://api.graph.cool/simple/v1/cje64cfdy0knn0161uokrbo7p'
+// const __SIMPLE_API_ENDPOINT__ = 'http://localhost:3001/graphql'
 
 const httpLink = new HttpLink({ uri: __SIMPLE_API_ENDPOINT__ })
 const client = new ApolloClient({
