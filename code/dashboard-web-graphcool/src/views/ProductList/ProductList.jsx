@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import { NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap'
+import { NavItem, Nav } from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Grid, Row, Col, Table } from 'react-bootstrap'
 
 import Card from 'components/Card/Card.jsx'
-const qs = require('query-string');
+const qs = require('query-string')
 
 const LIMIT = 3
 const thArray = ['ID', 'Image', 'Name', 'Description']
@@ -25,7 +24,7 @@ class ProductList extends Component {
                 title="Product Catalog"
                 category="List of Products"
                 ctTableFullWidth ctTableResponsive
-                content={(this.props.allProductsQuery.loading)?'Loading...':
+                content={(this.props.allProductsQuery.loading) ? 'Loading...':
                     <Table striped hover>
                       <thead>
                         <tr>
@@ -56,27 +55,26 @@ class ProductList extends Component {
                     </Table>
                 }
               />
-              <div>Items per page: {LIMIT}</div>
-              {
-                
-                (() => {
+              
+              {(() => {
                   if (this.props.allProductsQuery.loading) return false
                   const query = qs.parse(this.props.location.search)
                   let count = this.props.allProductsQuery._allProductsMeta.count
                   const limit = parseInt(query.limit, 10) || LIMIT
                   const offset = parseInt(query.offset, 10) || 0
                   const pages = Math.ceil(count / limit)
-                  const Previous = (offset > 0) ? <li className="page-item"><a className="page-link" href={`#/products?limit=${limit}&offset=${offset-limit}`}>Previous</a></li> : false
-                  const Next = (count > offset + limit) ? <li className="page-item"><a className="page-link" href={`#/products?limit=${limit}&offset=${offset + limit}`}>Next</a></li> : false
-                  return <Nav>
-                    <ul className="pagination">
+                const Previous = (offset > 0) ? <NavItem className="page-item page-link" href={`#/products?limit=${limit}&offset=${offset - limit}`}>Previous</NavItem> : false
+                const Next = (count > offset + limit) ? <NavItem className="page-item page-link" href={`#/products?limit=${limit}&offset=${offset + limit}`}>Next</NavItem> : false
+                  return <div>
+                    <Nav className="pagination">                    
                       {Previous}
-                      {/* <li className="page-item"><a className="page-link" href="#">1</a></li>
-                      <li className="page-item"><a className="page-link" href="#">2</a></li>
-                      <li className="page-item"><a className="page-link" href="#">3</a></li> */}
-                      {Next}                      
-                    </ul>
-                  </Nav>
+                      {Next}               
+                    
+                    </Nav> 
+                    <div>This is page: {1+pages-Math.ceil((count-offset)/limit)}</div>
+                    <div>Items per page: {limit}</div>
+                    <div>Total pages: {pages}</div>
+                  </div>
                 })()
               }
             </Col>

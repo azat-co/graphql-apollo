@@ -1,13 +1,9 @@
-import { Link } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-
 import React, { Component } from 'react';
 import {Table } from 'react-bootstrap';
-
 import Card from 'components/Card/Card.jsx'
 
-const LIMIT = 3
 const thArray = ['ID', 'Status', 'Action', 'Customer Email', 'Customer Payment', 'Amount', 'Quantity', 'Products']
 
 class OrderList extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, Alert } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
 import gql from 'graphql-tag'
-import { graphql, compose } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import Button from 'elements/CustomButton/CustomButton.jsx'
 import {NotificationList} from 'views/Notifications/NotificationList.jsx'
 

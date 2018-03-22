@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { Table, Grid, Row, Col } from 'react-bootstrap';
+import React, { Component } from 'react'
+import {  Grid, Row, Col } from 'react-bootstrap'
 
-import Card from 'components/Card/Card';
 
-import Button from 'elements/CustomButton/CustomButton';
+import Button from 'elements/CustomButton/CustomButton'
 
 class Help extends Component {
     render() {
@@ -14,10 +13,20 @@ class Help extends Component {
                         <Col md={8} mdOffset={2}>
                             <div>
                                 Need help form the author, Azat Mardan?<br/> 
-                                Ask for help at <a href="https://clarity.fm/azat" target="_blank">https://clarity.fm/azat</a>.
+                                <br />
+                                <Button className="btn btn-primary btn-lg" >Ask for help at <a href="https://clarity.fm/azat" target="_blank" rel="noopener noreferrer">https://clarity.fm/azat</a></Button>
                                 <br/>
                                 <br/>
-                                Built with <a href="https://www.creative-tim.com/">Creative Tim.</a>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                Theme from <a href="https://www.creative-tim.com">Creative Tim.</a>
                             </div>                            
                         </Col>
                     </Row>

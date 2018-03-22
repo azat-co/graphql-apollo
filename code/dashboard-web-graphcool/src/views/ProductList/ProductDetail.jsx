@@ -22,18 +22,16 @@ class ProductDetail extends React.Component {
         return (
             <div>
                 <h2>{Product.name}</h2>
-                <a
-                    className='btn btn-info'
+                <a className='btn btn-info'
                     href="#/products">
                     Back
                 </a>
 
                 <div className=''>
-                    <img
-                        className='image'
+                    <img className='image'
                         width="150"
-                        src={Product.productImageUrl}                        
-                    />
+                        alt={Product.name}
+                        src={Product.productImageUrl} />
                     <div className=''>
                         {Product.description}
                     </div>

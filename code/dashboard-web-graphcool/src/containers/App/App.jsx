@@ -15,9 +15,9 @@ import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import Sidebar from 'components/Sidebar/Sidebar';
 
-import ProductDetail from 'views/ProductList/ProductDetail';
+import ProductDetail from 'views/ProductList/ProductDetail.jsx';
 import { style } from "variables/Variables.jsx";
-import { Grid, Row, Col, Table } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 import appRoutes from 'routes/app.jsx';
 const __SIMPLE_API_ENDPOINT__ = 'https://api.graph.cool/simple/v1/cje64cfdy0knn0161uokrbo7p'

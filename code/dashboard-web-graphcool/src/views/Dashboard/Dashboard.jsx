@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
-import ChartistGraph from 'react-chartist';
-import { Grid, Row, Col } from 'react-bootstrap';
-import { graphql, compose } from 'react-apollo'
-import { withRouter } from 'react-router-dom'
+import React, { Component } from 'react'
+import ChartistGraph from 'react-chartist'
+import { Grid, Row, Col } from 'react-bootstrap'
+import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-import { Card } from 'components/Card/Card.jsx';
-import { StatsCard } from 'components/StatsCard/StatsCard.jsx';
-import { NotificationList } from 'views/Notifications/NotificationList.jsx';
+import { Card } from 'components/Card/Card.jsx'
+import { StatsCard } from 'components/StatsCard/StatsCard.jsx'
+import { NotificationList } from 'views/Notifications/NotificationList.jsx'
 
 
 import {
-  legendPie,
   dataSales,
   optionsSales,
   responsiveSales,
@@ -26,16 +24,16 @@ class Dashboard extends Component {
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {
-      var type = "fa fa-circle text-" + json["types"][i];
+      var type = "fa fa-circle text-" + json["types"][i]
       legend.push(
         <i className={type} key={i}></i>
-      );
-      legend.push(" ");
+      )
+      legend.push(" ")
       legend.push(
         json["names"][i]
-      );
+      )
     }
-    return legend;
+    return legend
   }
   render() {
     if (this.props.DashboardQuery.loading) {
@@ -66,7 +64,7 @@ class Dashboard extends Component {
     var legendPie = {
       names: productsPie.map(p=>p.name),
       types: ["info", "danger"]
-    };
+    }
     return (
       <div className="content">
         <Grid fluid>
@@ -245,4 +243,4 @@ const DashboardWithQuery = graphql(DASHBOARD_QUERY, {
   }
 })(Dashboard)
 
-export default DashboardWithQuery;
+export default DashboardWithQuery
