@@ -11,9 +11,10 @@ const LIMIT = 3
 const thArray = ['ID', 'Image', 'Name', 'Description']
 
 class ProductList extends Component {
+  
   componentDidMount () {
-
   }
+
   render () {
     return (
       <div className='content'>
@@ -28,18 +29,16 @@ class ProductList extends Component {
                 : <Table striped hover>
                   <thead>
                     <tr>
-                      {
-                            thArray.map((prop, key) => {
+                      {thArray.map((prop, key) => {
                               return (
                                 <th key={key}>{prop}</th>
                               )
                             })
-                          }
+                      }
                     </tr>
                   </thead>
                   <tbody>
-                    {
-                          this.props.allProductsQuery.allProducts &&
+                    {this.props.allProductsQuery.allProducts &&
                           this.props.allProductsQuery.allProducts.map((product, key) => {
                             return (
                               <tr key={key}>
@@ -50,12 +49,11 @@ class ProductList extends Component {
                               </tr>
                             )
                           })
-                        }
+                    }
                   </tbody>
                 </Table>
                 }
               />
-
               {(() => {
                 if (this.props.allProductsQuery.loading) return false
                 const query = qs.parse(this.props.location.search)
@@ -69,7 +67,6 @@ class ProductList extends Component {
                   <Nav className='pagination'>
                     {Previous}
                     {Next}
-
                   </Nav>
                   <div>This is page: {1 + pages - Math.ceil((count - offset) / limit)}</div>
                   <div>Items per page: {limit}</div>
@@ -85,32 +82,15 @@ class ProductList extends Component {
   }
 }
 
-const ALL_PRODUCTS_QUERY = gql`
-  query AllProductsQuery($limit: Int, $offset: Int) {
-    allProducts(orderBy: name_DESC, first: $limit, skip: $offset) {
-      id
-      name
-      description
-      productImageUrl      
-    }
-    _allProductsMeta {
-      count
-    }
-  }
-`
+// TODO: Implement Apollo GraphQL query
 
-const ProductListWithQuery = graphql(ALL_PRODUCTS_QUERY, {
-  name: 'allProductsQuery',
-  options (props) {
-    const query = qs.parse(props.location.search)
-    return {
-      variables: {
-        offset: parseInt(query.offset, 10) || 0,
-        limit: parseInt(query.limit, 10) || LIMIT
-      },
-      fetchPolicy: 'network-only'
-    }
+const ProductListWithMockData = (Component) => {
+  const mockData = {"data":{"allProducts":[{"name":"React Quickly","productImageUrl":"https://images-na.ssl-images-amazon.com/images/I/5159foIB0EL._SX396_BO1,204,203,200_.jpg","description":"Painless web apps with React, JSX, Redux, and GraphQL","__typename":"Product","id":"cje7uz5ur52ec01893q9ohakm"},{"name":"Pro Express.js","productImageUrl":"https://images-na.ssl-images-amazon.com/images/I/51ZM3FAioPL._SX404_BO1,204,203,200_.jpg","description":"Master Express.js: The Node.js Framework For Your Web Development","__typename":"Product","id":"cje64j94f4mrm0189ka7o2p33"},{"name":"Practical Node.js","productImageUrl":"https://images-na.ssl-images-amazon.com/images/I/512022zZ3OL._SX403_BO1,204,203,200_.jpg","description":"Building Real-World Scalable Web Apps","__typename":"Product","id":"cje64k58b4mrz0189kg2yjjic"}],"_allProductsMeta":{"count":4,"__typename":"_QueryMeta"}}}
+  const mockDataProps = {
+    allProductsQuery: mockData.data,
   }
-})(ProductList)
+  mockDataProps.allProductsQuery.loading = false
+  return (props) => <Component {...mockDataProps} {...props}/>
+}
+export default ProductListWithMockData(ProductList)
 
-export default ProductListWithQuery

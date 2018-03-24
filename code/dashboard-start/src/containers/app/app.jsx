@@ -20,34 +20,30 @@ import { style } from 'variables/Variables.jsx'
 import { Grid, Row, Col } from 'react-bootstrap'
 
 import appRoutes from 'routes/app.jsx'
-const __SIMPLE_API_ENDPOINT__ = 'https://api.graph.cool/simple/v1/cje64cfdy0knn0161uokrbo7p'
-// const __SIMPLE_API_ENDPOINT__ = 'http://localhost:3001/graphql'
 
-const httpLink = new HttpLink({ uri: __SIMPLE_API_ENDPOINT__ })
-const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache()
-})
+// TODO: Implement Apollo setup
 
 class App extends Component {
+
   constructor (props) {
     super(props)
     this.componentDidMount = this.componentDidMount.bind(this)
     this.state = {
-
     }
   }
 
   componentDidMount () {
   }
+
   componentDidUpdate (e) {
     if (window.innerWidth < 993 && e.history.location.pathname !== e.location.pathname && document.documentElement.className.indexOf('nav-open') !== -1) {
       document.documentElement.classList.toggle('nav-open')
     }
   }
+
   render () {
     return (
-      <ApolloProvider client={client}>
+      // TODO: Implement Apollo provider
         <div className='wrapper'>
 
           <NotificationSystem ref='notificationSystem' style={style} />
@@ -84,7 +80,6 @@ class App extends Component {
                             <Route path={prop.path} component={prop.component} key={key} />
                           )
                         })
-
                       }
                     </Switch>
                   </Col>
@@ -94,7 +89,6 @@ class App extends Component {
             <Footer />
           </div>
         </div>
-      </ApolloProvider>
     )
   }
 }

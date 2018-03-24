@@ -47,23 +47,14 @@ class Notifications extends Component {
   }
 }
 
-console.log(NotificationList.fragment)
-const NOTIFICATIONS_QUERY = gql`
-  query NotificationsQuery {    
-    ...allNotificationsFragment
-  }
-  ${NotificationList.fragment}
-`
+// TODO: Implement Apollo GraphQL query
 
-const NotificationsWithQuery = graphql(NOTIFICATIONS_QUERY, {
-  name: 'NotificationsQuery',
-  options (props) {
-    return {
-      variables: {
-      },
-      fetchPolicy: 'network-only'
-    }
+const NotificationsWithMockData = (Component) => {
+  const mockData = {"data":{"allNotifications":[{"__typename":"Notification","id":"cjea9dfqg5l7f0189g7x9olqo","createdAt":"2018-03-02T18:14:35.000Z","message":"User logged in","type":"info"}],"__typename":"Query"}}
+  const mockDataProps = {
+    NotificationsQuery: mockData.data,
   }
-})(Notifications)
-
-export default NotificationsWithQuery
+  mockDataProps.NotificationsQuery.loading = false
+  return (props) => <Component {...mockDataProps} {...props}/>
+}
+export default NotificationsWithMockData(Notifications)

@@ -59,55 +59,14 @@ class OrderList extends Component {
   }
 }
 
-const FULLFILL_ORDER_MUTATION = gql`
-  mutation FullfillOrderMutation($id: ID!) {
-    updateOrder(id: $id, isCompleted: true) {
-      id
-      isCompleted
-    }
-  }
-`
+// TODO: Implement Apollo GraphQL query
 
-const UNFULLFILL_ORDER_MUTATION = gql`
-  mutation UnFullfillOrderMutation($id: ID!) {
-    updateOrder(id: $id, isCompleted: false) {
-      id
-      isCompleted
-    }
+const OrderListWithMockData = (Component) => {
+  const mockData = {"data":{"allOrders":[{"isCompleted":false,"productQuantityPerOrders":[{"id":"cje6ms9k64rnx0189ode05ow6","quantity":1,"product":{"name":"Pro Express.js","_productQuantityPerOrdersMeta":{"count":1,"__typename":"_QueryMeta"},"__typename":"Product"},"__typename":"ProductQuantityPerOrder"},{"id":"cje6msyim4rok01892irqwdir","quantity":2,"product":{"name":"Practical Node.js","_productQuantityPerOrdersMeta":{"count":1,"__typename":"_QueryMeta"},"__typename":"Product"},"__typename":"ProductQuantityPerOrder"}],"__typename":"Order","amount":49.99,"customerPayment":"0x20a788ff3daf7d3d288630ce7a5bf1eac3461091e151c6591c00b496e8912449","id":"cje64l4as4ms70189e2r94a6m","customerEmail":"hi@node.university","_productQuantityPerOrdersMeta":{"count":2,"__typename":"_QueryMeta"}}]}}
+  const props = {
+    allOrdersQuery: mockData.data,
   }
-`
-
-const ALL_ORDERS_QUERY = gql`
-query {
-  allOrders(orderBy: orderCreatedAt_DESC) {
-    id
-    customerEmail
-    customerPayment
-    amount
-    isCompleted
-    _productQuantityPerOrdersMeta {count}    
-		productQuantityPerOrders {          
-      id       
-      quantity
-      product {
-        name
-        _productQuantityPerOrdersMeta {count}
-      }
-    }
-  }
+  props.allOrdersQuery.loading = false
+  return () => <Component {...props} />
 }
-`
-
-const OrderListWithQuery = graphql(ALL_ORDERS_QUERY, {
-  name: 'allOrdersQuery',
-  options: {
-    fetchPolicy: 'network-only'
-  }
-})(OrderList)
-
-const OrderListWithMutations =
-  graphql(FULLFILL_ORDER_MUTATION, { name: 'fullfillOrderMutation' })(
-    graphql(UNFULLFILL_ORDER_MUTATION, { name: 'unFullfillOrderMutation' })(OrderListWithQuery)
-  )
-
-export default OrderListWithMutations
+export default OrderListWithMockData(OrderList)
