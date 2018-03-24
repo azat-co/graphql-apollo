@@ -11,11 +11,11 @@ import {
 } from 'react-router-dom'
 import NotificationSystem from 'react-notification-system'
 
-import Header from 'components/Header/Header'
-import Footer from 'components/Footer/Footer'
-import Sidebar from 'components/Sidebar/Sidebar'
+import Header from 'components/header/header'
+import Footer from 'components/footer/footer'
+import Sidebar from 'components/sidebar/sidebar'
 
-import ProductDetail from 'views/ProductList/ProductDetail.jsx'
+import ProductDetail from 'views/products/product-detail.jsx'
 import { style } from 'variables/Variables.jsx'
 import { Grid, Row, Col } from 'react-bootstrap'
 

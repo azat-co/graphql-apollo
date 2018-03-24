@@ -6,7 +6,7 @@ import gql from 'graphql-tag'
 
 import { Card } from 'components/Card/Card.jsx'
 import { StatsCard } from 'components/StatsCard/StatsCard.jsx'
-import { NotificationList } from 'views/Notifications/NotificationList.jsx'
+import { NotificationList } from 'views/notifications/notifications-list.jsx'
 
 import {
   dataSales,

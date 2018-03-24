@@ -7,7 +7,7 @@ import {
     Switch
 } from 'react-router-dom'
 
-import App from 'containers/App/App.jsx'
+import App from 'containers/app/app.jsx'
 
 import './assets/css/bootstrap.min.css'
 import './assets/css/animate.min.css'

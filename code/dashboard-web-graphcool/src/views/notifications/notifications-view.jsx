@@ -3,7 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import Button from 'elements/CustomButton/CustomButton.jsx'
-import {NotificationList} from 'views/Notifications/NotificationList.jsx'
+import {NotificationList} from 'views/notifications/notifications-list.jsx'
 
 class Notifications extends Component {
   render () {

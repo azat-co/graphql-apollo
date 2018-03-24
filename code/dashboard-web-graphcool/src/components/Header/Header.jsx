@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Navbar } from 'react-bootstrap'
 
-import HeaderLinks from './HeaderLinks.jsx'
+import HeaderLinks from './header-links.jsx'
 
 import appRoutes from 'routes/app.jsx'
 

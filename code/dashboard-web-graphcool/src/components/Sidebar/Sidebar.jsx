@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import HeaderLinks from '../Header/HeaderLinks.jsx'
+import HeaderLinks from '../header/header-links.jsx'
 
 import imagine from 'assets/img/sidebar-5.jpg'
 import logo from 'assets/img/reactlogo.png'
