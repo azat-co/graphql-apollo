@@ -1,0 +1,80 @@
+# The following types define the data model of the example service
+# based on which the GraphQL API is generated
+
+# type User @model {
+#   id: ID! @isUnique
+#   name: String
+#   dateOfBirth: DateTime
+
+#   # Uncomment below - you can declare relations between models like this
+
+#   # posts: [Post!]! @relation(name: "UserPosts")
+# }
+
+
+# Uncomment the model below as well
+
+# type Post @model {
+#   id: ID! @isUnique
+#   title: String!
+#
+#   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
+#   author: User! @relation(name: "UserPosts")
+# }
+
+type File @model {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type Order @model {
+  amount: Float!
+  customerEmail: String!
+  customerPayment: String!
+  id: ID! @isUnique
+  isCompleted: Boolean!
+  orderCreatedAt: DateTime!
+  productQuantityPerOrders: [ProductQuantityPerOrder!]! @relation(name: "ProductQuantityPerOrderOnOrder")
+  products: [Product!]! @relation(name: "OrderOnProduct")
+}
+
+type Product @model {
+  description: String!
+  id: ID! @isUnique
+  inStoreCount: Int!
+  name: String!
+  orders: [Order!]! @relation(name: "OrderOnProduct")
+  productImageUrl: String
+  productQuantityPerOrders: [ProductQuantityPerOrder!]! @relation(name: "ProductQuantityPerOrderOnProduct")
+}
+
+type ProductQuantityPerOrder @model {
+  id: ID! @isUnique
+  order: Order @relation(name: "ProductQuantityPerOrderOnOrder")
+  product: Product @relation(name: "ProductQuantityPerOrderOnProduct")
+  quantity: Int!
+}
+
+type User @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
+
+type Notification @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  message: String!
+  type: String!
+}
+
+enum NotificationType {
+  Info
+  Warning
+}

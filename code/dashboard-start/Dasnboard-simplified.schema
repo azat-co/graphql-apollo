@@ -1,0 +1,56 @@
+﻿type File @model {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type Order @model {
+  amount: Float!
+  customerEmail: String!
+  customerPayment: String!
+  id: ID! @isUnique
+  isCompleted: Boolean!
+  orderCreatedAt: DateTime!
+  productQuantityPerOrders: [ProductQuantityPerOrder!]! @relation(name: "ProductQuantityPerOrderOnOrder")
+  products: [Product!]! @relation(name: "OrderOnProduct")
+}
+
+type Product @model {
+  description: String!
+  id: ID! @isUnique
+  inStoreCount: Int!
+  name: String!
+  orders: [Order!]! @relation(name: "OrderOnProduct")
+  productImageUrl: String
+  productQuantityPerOrders: [ProductQuantityPerOrder!]! @relation(name: "ProductQuantityPerOrderOnProduct")
+}
+
+type ProductQuantityPerOrder @model {
+  id: ID! @isUnique
+  order: Order @relation(name: "ProductQuantityPerOrderOnOrder")
+  product: Product @relation(name: "ProductQuantityPerOrderOnProduct")
+  quantity: Int!
+}
+
+type User @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
+
+type Notification @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  message: String!
+  type: String!
+}
+
+enum NotificationType {
+  Info
+  Warning
+}
