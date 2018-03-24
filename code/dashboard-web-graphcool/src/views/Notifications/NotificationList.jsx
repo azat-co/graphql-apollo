@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Tooltip, OverlayTrigger } from 'react-bootstrap';
-import Checkbox from 'elements/CustomCheckbox/CustomCheckbox.jsx';
-import Button from 'elements/CustomButton/CustomButton.jsx';
 import gql from 'graphql-tag'
-import { Grid, Row, Col, Alert } from 'react-bootstrap'
+import { Alert } from 'react-bootstrap'
 
 export class NotificationList extends Component {
     handleCheckbox = event => {

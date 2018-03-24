@@ -44,7 +44,7 @@ class ProductList extends Component {
                             return (
                               <tr key={key}>
                                 <td><a href={`#/products/${product.id}`}>{product.id}</a></td>
-                                <td><img width="100" src={product.productImageUrl}/></td>
+                                <td><img alt={product.name} width="100" src={product.productImageUrl}/></td>
                                 <td>{product.name}</td>
                                 <td>{product.description}</td>
                               </tr>
