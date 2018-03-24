@@ -84,18 +84,18 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-wallet text-success"></i>}
                 statsText="Revenue"
-                statsValue="$1,345"
+                statsValue={this.props.DashboardQuery.allOrders.reduce((sum, order)=>order.amount+sum, 0)}
                 statsIcon={<i className="fa fa-calendar-o"></i>}
-                statsIconText="Last day"
+                statsIconText="This year"
               />
             </Col>
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-graph1 text-danger"></i>}
-                statsText="Errors"
-                statsValue="23"
+                statsText="Notifications"
+                statsValue={this.props.DashboardQuery._allNotificationsMeta.count}
                 statsIcon={<i className="fa fa-clock-o"></i>}
-                statsIconText="In the last hour"
+                statsIconText="Recently"
               />
             </Col>
             <Col lg={3} sm={6}>
@@ -228,7 +228,9 @@ query DashboardQuery {
       allProductQuantityPerOrdersCount
     }  
     ...allNotifications
-    
+    _allNotificationsMeta {
+      count
+    }
     
   }
   ${Dashboard.fragments.allNotifications}
