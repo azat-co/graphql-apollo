@@ -69,7 +69,6 @@ class ProductList extends Component {
                   <Nav className='pagination'>
                     {Previous}
                     {Next}
-
                   </Nav>
                   <div>This is page: {1 + pages - Math.ceil((count - offset) / limit)}</div>
                   <div>Items per page: {limit}</div>
@@ -91,7 +90,7 @@ const ALL_PRODUCTS_QUERY = gql`
       id
       name
       description
-      productImageUrl      
+      productImageUrl
     }
     _allProductsMeta {
       count

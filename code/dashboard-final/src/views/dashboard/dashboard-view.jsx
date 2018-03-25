@@ -81,7 +81,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className='pe-7s-wallet text-success' />}
                 statsText='Revenue'
-                statsValue='$1,345'
+                statsValue={this.props.DashboardQuery.allOrders.reduce((acc, order)=>acc+order.amount, 0)}
                 statsIcon={<i className='fa fa-calendar-o' />}
                 statsIconText='Last day'
               />
@@ -205,11 +205,11 @@ query DashboardQuery {
       count
     }
   	allOrders( filter: {
-      orderCreatedAt_gte: "2018-01-01" 
+      orderCreatedAt_gte: "2018-01-01"
     }) {
       amount
       customerEmail
-      productQuantityPerOrders {        
+      productQuantityPerOrders {
         product {
           id
         }
@@ -225,8 +225,8 @@ query DashboardQuery {
       _productQuantityPerOrdersMeta {
         count
       }
-    }  
-    ...allNotificationsFragment        
+    }
+    ...allNotificationsFragment
   }
   ${NotificationList.fragment}
 `

@@ -85,9 +85,9 @@ query {
     customerPayment
     amount
     isCompleted
-    _productQuantityPerOrdersMeta {count}    
-		productQuantityPerOrders {          
-      id       
+    _productQuantityPerOrdersMeta {count}
+		productQuantityPerOrders {
+      id
       quantity
       product {
         name
@@ -107,7 +107,6 @@ const OrderListWithQuery = graphql(ALL_ORDERS_QUERY, {
 
 const OrderListWithMutations =
   graphql(FULLFILL_ORDER_MUTATION, { name: 'fullfillOrderMutation' })(
-    graphql(UNFULLFILL_ORDER_MUTATION, { name: 'unFullfillOrderMutation' })(OrderListWithQuery)
-  )
+  graphql(UNFULLFILL_ORDER_MUTATION, { name: 'unFullfillOrderMutation' })(OrderListWithQuery))
 
 export default OrderListWithMutations
