@@ -32,3 +32,8 @@ Run and select local:
 graphcool deploy
 ```
 
+The debug option
+
+```
+export DEBUG="*"
+```

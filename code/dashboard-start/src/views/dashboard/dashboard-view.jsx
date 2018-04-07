@@ -81,7 +81,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className='pe-7s-wallet text-success' />}
                 statsText='Revenue'
-                statsValue='$1,345'
+                statsValue={this.props.DashboardQuery.allOrders.reduce((acc, order)=>acc+order.amount, 0)}
                 statsIcon={<i className='fa fa-calendar-o' />}
                 statsIconText='Last day'
               />
@@ -192,15 +192,50 @@ class Dashboard extends Component {
   }
 }
 
-// TODO: Implement Apollo GraphQL query
-
-
-const DashboardWithMockData = (Component) => {
-  const mockData = { "data": { "_allOrdersMeta": { "count": 1, "__typename": "_QueryMeta" }, "__typename": "Query", "allProducts": [{ "name": "Pro Express.js", "productQuantityPerOrders": [{ "id": "cje6ms9k64rnx0189ode05ow6", "quantity": 1, "__typename": "ProductQuantityPerOrder" }], "_productQuantityPerOrdersMeta": { "count": 1, "__typename": "_QueryMeta" }, "__typename": "Product" }, { "name": "Practical Node.js", "productQuantityPerOrders": [{ "id": "cje6msyim4rok01892irqwdir", "quantity": 2, "__typename": "ProductQuantityPerOrder" }], "_productQuantityPerOrdersMeta": { "count": 1, "__typename": "_QueryMeta" }, "__typename": "Product" }, { "name": "React Quickly", "productQuantityPerOrders": [], "_productQuantityPerOrdersMeta": { "count": 0, "__typename": "_QueryMeta" }, "__typename": "Product" }, { "name": "Full Stack JavaScript", "productQuantityPerOrders": [], "_productQuantityPerOrdersMeta": { "count": 0, "__typename": "_QueryMeta" }, "__typename": "Product" }], "_allProductsMeta": { "count": 4, "__typename": "_QueryMeta" }, "allOrders": [{ "amount": 49.99, "customerEmail": "hi@node.university", "productQuantityPerOrders": [{ "product": { "id": "cje64j94f4mrm0189ka7o2p33", "__typename": "Product" }, "quantity": 1, "__typename": "ProductQuantityPerOrder" }, { "product": { "id": "cje64k58b4mrz0189kg2yjjic", "__typename": "Product" }, "quantity": 2, "__typename": "ProductQuantityPerOrder" }], "__typename": "Order" }], "allNotifications": [{ "__typename": "Notification", "id": "cjea9dfqg5l7f0189g7x9olqo", "createdAt": "2018-03-02T18:14:35.000Z", "message": "User logged in", "type": "info" }] } }
-  const props = {
-    DashboardQuery: mockData.data,
+const DASHBOARD_QUERY = gql`
+query DashboardQuery {
+    _allProductsMeta {
+      count
+    }
+    _allOrdersMeta {
+      count
+    }
+  	allOrders( filter: {
+      orderCreatedAt_gte: "2018-01-01"
+    }) {
+      amount
+      customerEmail
+      productQuantityPerOrders {
+        product {
+          id
+        }
+        quantity
+      }
+    }
+    allProducts {
+      name
+      productQuantityPerOrders {
+        id
+        quantity
+      }
+      _productQuantityPerOrdersMeta {
+        count
+      }
+    }
+    ...allNotificationsFragment
   }
-  props.DashboardQuery.loading = false
-  return () => <Component {...props} />
-}
-export default DashboardWithMockData(Dashboard)
+  ${NotificationList.fragment}
+`
+
+const DashboardWithQuery = graphql(DASHBOARD_QUERY, {
+  name: 'DashboardQuery',
+  options (props) {
+    return {
+      variables: {
+      },
+      fetchPolicy: 'network-only'
+    }
+  }
+})(Dashboard)
+
+export default DashboardWithQuery
